@@ -1,0 +1,36 @@
+import org.gradle.internal.os.OperatingSystem
+
+// Plugins
+plugins {
+    id 'java-library'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '4.0.1'
+}
+
+repositories {
+    // local repository first
+    mavenLocal()
+    
+    jcenter()
+}
+
+group = 'jps.test'
+
+mainClassName = 'jps.FakeLoadBug4'
+
+
+description = """Fake Load bug 4"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+configurations {
+    providedRuntime
+}
+
+dependencies {
+    api('com.martensigwart:fakeload:0.4.0')
+}
